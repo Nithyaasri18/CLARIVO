@@ -1,0 +1,71 @@
+[
+  {
+    "id": "scenario-a",
+    "code": "ROUTINE_RESOLUTION",
+    "name": "Scenario A: Clean Routine Resolution with Citation",
+    "customer_id": "C1044",
+    "customer_name": "Ananya Iyer",
+    "message": "Why is my internet down today? Did I miss a payment?",
+    "expected_decision": "RESOLUTION",
+    "expected_kb_id": "KB-BILL-02",
+    "expected_confidence_range": ">= 0.88",
+    "description": "Account shows overdue invoice of ₹499. The copilot grounds its answer in KB-BILL-02 (Overdue Invoices & Grace Period), verifies invoice status, proves why the soft-suspension occurred, and supplies the quick-pay portal link with zero hallucination.",
+    "benchmark_goal": "Demonstrates strict evidence grounding, citation to KB-BILL-02, and actionable resolution."
+  },
+  {
+    "id": "scenario-b",
+    "code": "MISSING_INFORMATION",
+    "name": "Scenario B: Missing Information (Refuses to Guess)",
+    "customer_id": "C1042",
+    "customer_name": "Priya Sharma",
+    "message": "My internet stopped working yesterday afternoon. Nothing loads on my phone or laptop.",
+    "expected_decision": "MISSING_INFO",
+    "expected_kb_id": "KB-ROUT-01",
+    "missing_field": "router_los_status",
+    "expected_confidence_range": "0.60 - 0.75",
+    "description": "Customer account is in good standing (Paid, ₹0 balance), but router status is UNKNOWN in telemetry. Instead of guessing whether it is a router hardware fault or network outage, Clarivo detects missing physical indicator data and asks customer specifically to check the router's optical LOS light status.",
+    "benchmark_goal": "Demonstrates 'What does the AI NOT know?' — never hallucinates a fix, asks for exactly what is missing."
+  },
+  {
+    "id": "scenario-c",
+    "code": "EXPLICIT_ESCALATION",
+    "name": "Scenario C: Smart Human Escalation (Distress & Legal Risk)",
+    "customer_id": "C1045",
+    "customer_name": "Vikram Malhotra",
+    "message": "I've already called support 3 times and nobody showed up. If my line isn't restored today, I am filing a formal legal complaint with the consumer court.",
+    "expected_decision": "ESCALATE",
+    "expected_kb_id": "KB-CONN-02",
+    "escalation_reason": "Repeated contact (3 previous tickets) + Explicit legal grievance trigger",
+    "target_department": "Executive Escalations & Legal Care Team",
+    "description": "Deterministic safety gate immediately intercepts legal dispute keywords and repeated failed contact count. Stops robotic chatbot loop immediately and generates a structured human handover brief with established facts, tried steps, and agent starting point.",
+    "benchmark_goal": "Demonstrates rapid, deterministic escalation and comprehensive human agent handover."
+  },
+  {
+    "id": "scenario-d",
+    "code": "UNCOVERED_CASE",
+    "name": "Scenario D: Uncovered / Out-of-Scope Case",
+    "customer_id": "C1046",
+    "customer_name": "Sneha Patel",
+    "message": "How do I configure custom SIP trunking credentials on my ONT for an external Grandstream IP-PBX system?",
+    "expected_decision": "ESCALATE",
+    "expected_kb_id": null,
+    "escalation_reason": "No matching knowledge base article with sufficient similarity (Score < 0.72)",
+    "target_department": "Enterprise Voice Solutions Desk",
+    "description": "The enterprise PBX request does not match any residential knowledge base article. Rather than inventing fake SIP configuration instructions, the system flags the case as uncovered in KB and gracefully escalates with an established note that residential ONTs do not support custom SIP trunk bridging.",
+    "benchmark_goal": "Demonstrates zero hallucination on uncovered domains and clean fallback."
+  },
+  {
+    "id": "scenario-e",
+    "code": "DATA_KB_CONFLICT",
+    "name": "Scenario E: Account Data vs. KB Catalog Discrepancy",
+    "customer_id": "C1047",
+    "customer_name": "Amit Kulkarni",
+    "message": "You billed me ₹1,499 this month, but my plan is only ₹999. Why am I being overcharged?",
+    "expected_decision": "ESCALATE",
+    "expected_kb_id": "KB-BILL-03",
+    "escalation_reason": "Discrepancy detected: Account bill (₹1,499) contradicts catalog price (₹999) without active add-ons",
+    "target_department": "Senior Billing Reconciliation Desk",
+    "description": "Account record shows plan FIBER-999 (catalog ₹999 in KB-BILL-03) but current balance ₹1,499. Deterministic validation detects this pricing mismatch. Instead of falsely defending the higher charge, the system validates the customer's claim, records the ₹500 delta, and hands off to billing specialist.",
+    "benchmark_goal": "Demonstrates evidence validation catching billing conflicts and advocating for customer accuracy."
+  }
+]

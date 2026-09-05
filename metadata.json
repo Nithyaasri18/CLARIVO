@@ -1,0 +1,6 @@
+{
+  "name": "Clarivo — Intelligent Support Resolution System",
+  "description": "Clarivo: Evidence-Grounded Customer Resolution Copilot for broadband and mobile support (PS04)",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

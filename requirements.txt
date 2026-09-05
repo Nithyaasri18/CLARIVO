@@ -1,0 +1,6 @@
+# Clarivo Requirements (Track PS04, NexusTiQ24)
+# Python standard library handles core SQLite, HTTP server, and JSON.
+# The external API is Google Gemini (accessed via REST or google-genai).
+google-genai>=0.1.1
+requests>=2.31.0
+python-dotenv>=1.0.0

@@ -1,0 +1,227 @@
+[
+  {
+    "id": "KB-BILL-01",
+    "category": "BILLING",
+    "title": "Advance Billing Cycle and Proration Rules",
+    "body": "All broadband plans operate on an advance billing cycle generated on the 1st of every calendar month with a due date of the 15th. When a subscriber activates or alters a plan mid-cycle, charges are prorated on a daily basis (Monthly Rental / 30 * Active Days). If payment is received after the due date, a standard late fee of ₹100 is levied on the subsequent invoice.",
+    "applies_to": ["FIBER-499", "FIBER-799", "FIBER-999", "FIBER-1499"],
+    "required_fields": ["billing_status", "current_balance", "monthly_rental", "last_payment_date"],
+    "keywords": ["bill cycle", "due date", "prorate", "proration", "advance billing", "late fee", "invoice"]
+  },
+  {
+    "id": "KB-BILL-02",
+    "category": "BILLING",
+    "title": "Overdue Invoices, Auto-Debit Failures, and Suspension Grace Period",
+    "body": "Accounts with unpaid dues beyond the 15th enter a 5-day grace period. If payment is not recorded by the 20th 23:59 IST, broadband service is automatically transitioned to 'SOFT SUSPENSION' (router optical link remains active, but all HTTP traffic is redirected to the quick-pay portal https://pay.clarivo.net). Once payment of the exact outstanding balance is recorded, service restoration occurs within 15 minutes without requiring manual agent dispatch.",
+    "applies_to": ["FIBER-499", "FIBER-799", "FIBER-999", "FIBER-1499"],
+    "required_fields": ["billing_status", "current_balance", "plan_name"],
+    "keywords": ["overdue", "unpaid", "suspended", "auto-debit", "grace period", "service down for bill", "pay portal", "reactivation", "miss a payment", "missed payment", "internet down today", "internet disconnected for bill"]
+  },
+  {
+    "id": "KB-BILL-03",
+    "category": "BILLING",
+    "title": "Standard Plan Pricing Catalog and GST Breakdown",
+    "body": "Official catalog base rentals (exclusive of 18% GST): Fiber Starter (FIBER-499) at ₹499/mo (40 Mbps); Fiber Basic (FIBER-799) at ₹799/mo (100 Mbps); Fiber Pro (FIBER-999) at ₹999/mo (200 Mbps + OTT bundle); Fiber Ultra (FIBER-1499) at ₹1,499/mo (300 Mbps + All OTT). Any recurring charge exceeding these catalog figures indicates either an unbilled hardware rental (₹150/mo for mesh node) or an active OTT booster pack. Unrecognized rate deviations must be reviewed for unauthorized add-ons.",
+    "applies_to": ["FIBER-499", "FIBER-799", "FIBER-999", "FIBER-1499"],
+    "required_fields": ["plan_id", "monthly_rental", "current_balance"],
+    "keywords": ["plan pricing", "plan cost", "monthly rental", "₹799", "₹999", "₹499", "₹1499", "gst", "overcharged", "catalog"]
+  },
+  {
+    "id": "KB-BILL-04",
+    "category": "BILLING",
+    "title": "Security Deposit Refund Timelines and Termination Settlement",
+    "body": "Upon formal account termination, refundable security deposits for optical network terminals (ONT) of ₹1,000 are processed within 14 business days following hardware retrieval by field technicians. The customer must ensure optical cables and power adapters are intact. Any outstanding balance on the final invoice is adjusted against the security deposit.",
+    "applies_to": ["FIBER-499", "FIBER-799", "FIBER-999", "FIBER-1499"],
+    "required_fields": ["billing_status", "current_balance", "tenure_months"],
+    "keywords": ["security deposit", "refund timeline", "disconnection", "return router", "final settlement"]
+  },
+  {
+    "id": "KB-BILL-05",
+    "category": "BILLING",
+    "title": "Duplicate Payment Reversal and Credit Adjustment Policy",
+    "body": "When a subscriber experiences duplicate deductions for the same billing cycle via UPI or Net Banking, the secondary payment is automatically detected within 4 hours and queued for reconciliation. The subscriber may choose between: (1) Instant credit adjustment against the forthcoming month's invoice, or (2) Reversal back to the originating bank account within 3 to 5 banking days.",
+    "applies_to": ["FIBER-499", "FIBER-799", "FIBER-999", "FIBER-1499"],
+    "required_fields": ["last_payment_date", "current_balance"],
+    "keywords": ["duplicate payment", "charged twice", "double debit", "reversal", "refund to bank"]
+  },
+  {
+    "id": "KB-BILL-06",
+    "category": "BILLING",
+    "title": "Late Fee Waiver Policy for Involuntary Service Outages",
+    "body": "If an account sustained an involuntary network outage exceeding 48 continuous hours during the billing window, any automated ₹100 late fee levied for delayed payment in that specific cycle is eligible for an unconditional waiver. The copilot must check ticket history for verified outage tickets before applying the waiver.",
+    "applies_to": ["FIBER-499", "FIBER-799", "FIBER-999", "FIBER-1499"],
+    "required_fields": ["billing_status", "recent_tickets"],
+    "keywords": ["late fee waiver", "remove late fee", "penalty waiver", "involuntary outage"]
+  },
+  {
+    "id": "KB-CONN-01",
+    "category": "CONNECTIVITY",
+    "title": "Planned Network Maintenance Windows and SLA Notification",
+    "body": "Routine fiber ring maintenance occurs between 02:00 IST and 05:00 IST on Tuesdays and Thursdays. Subscribers in affected OLT sectors are notified via SMS 24 hours in advance. If an outage occurs outside scheduled windows without prior broadcast, it is treated as an unplanned fiber cut or node fault.",
+    "applies_to": ["FIBER-499", "FIBER-799", "FIBER-999", "FIBER-1499"],
+    "required_fields": ["router_status"],
+    "keywords": ["maintenance", "scheduled outage", "down tonight", "work in area", "maintenance window"]
+  },
+  {
+    "id": "KB-CONN-02",
+    "category": "CONNECTIVITY",
+    "title": "Regional Fiber Cut / Area Outage Identification",
+    "body": "When civil construction or vehicular accidents sever trunk optical fiber cables, an entire optical distribution node (ODN) goes dark. The central monitoring system flags an Area Outage if >15 ONT units in the same optical splitter report loss of signal simultaneously. In such events, individual in-home visits are suspended, and field restoration ETA is typically 3 to 6 hours.",
+    "applies_to": ["FIBER-499", "FIBER-799", "FIBER-999", "FIBER-1499"],
+    "required_fields": ["router_status"],
+    "keywords": ["fiber cut", "area outage", "neighborhood down", "mass outage", "los light red", "trunk cable"]
+  },
+  {
+    "id": "KB-CONN-03",
+    "category": "CONNECTIVITY",
+    "title": "High Latency, Jitter, and Packet Loss Troubleshooting",
+    "body": "Subscribers experiencing gaming latency spikes or erratic video calls must first test via an Ethernet Cat6 cable directly connected to LAN Port 1 of the ONT. If latency exceeds 45ms to local gateway or packet loss exceeds 2%, verify if background torrents or cloud backups are saturated. If local tests are clean, field diagnostics must measure optical attenuation (dBm level) at the optical splice tray.",
+    "applies_to": ["FIBER-799", "FIBER-999", "FIBER-1499"],
+    "required_fields": ["router_status", "plan_name"],
+    "keywords": ["high ping", "latency", "lag", "packet loss", "gaming ping", "jitter"]
+  },
+  {
+    "id": "KB-CONN-04",
+    "category": "CONNECTIVITY",
+    "title": "DNS Resolution Failures and Configuration",
+    "body": "When connected devices report 'Connected, no internet' or cannot resolve domain names while IP pings (e.g. 8.8.8.8) succeed, the primary DNS cache on the ONT is corrupted. Recommended resolution: Set ONT DNS primary to 1.1.1.1 (Cloudflare) and secondary to 8.8.8.8 (Google), followed by clearing local OS DNS cache via `ipconfig /flushdns`.",
+    "applies_to": ["FIBER-499", "FIBER-799", "FIBER-999", "FIBER-1499"],
+    "required_fields": ["router_status"],
+    "keywords": ["dns", "dns error", "connected without internet", "cannot load websites", "flushdns"]
+  },
+  {
+    "id": "KB-CONN-05",
+    "category": "CONNECTIVITY",
+    "title": "Fair Usage Policy (FUP) Speed Throttling",
+    "body": "All unlimited residential plans carry a commercial FUP limit of 3,300 GB (3.3 TB) per billing cycle. Upon consuming 100% of the FUP quota, speed is automatically stepped down to 2 Mbps until the 1st of the next calendar month. Subscribers can check remaining quota in real-time or purchase a 500GB high-speed top-up for ₹199.",
+    "applies_to": ["FIBER-499", "FIBER-799", "FIBER-999", "FIBER-1499"],
+    "required_fields": ["plan_name", "plan_id"],
+    "keywords": ["speed drop", "slow internet", "fup", "data limit", "throttled", "3300 gb"]
+  },
+  {
+    "id": "KB-CONN-06",
+    "category": "CONNECTIVITY",
+    "title": "Static IP Assignment and Port Forwarding",
+    "body": "Residential connections are assigned Carrier-Grade NAT (CGNAT) dynamic IP addresses. For hosting home servers, security CCTV NVRs, or strict NAT gaming, a dedicated Static IPv4 address is available on Fiber Pro (FIBER-999) and Fiber Ultra (FIBER-1499) for an additional ₹250/month. CGNAT cannot support inbound port forwarding on standard plans.",
+    "applies_to": ["FIBER-999", "FIBER-1499"],
+    "required_fields": ["plan_id"],
+    "keywords": ["static ip", "port forwarding", "cgnat", "cctv access", "public ip", "open port"]
+  },
+  {
+    "id": "KB-ROUT-01",
+    "category": "HARDWARE",
+    "title": "Optical LOS Indicator Status Diagnostics",
+    "body": "The LOS (Loss of Signal) LED on the front panel of the ONT router indicates physical laser continuity from the optical fiber patch cord: (1) Solid RED light indicates physical fiber severance, sharp bend radius (<30mm), or disconnected SC-APC green connector. (2) Blinking RED indicates degraded optical signal power weaker than -28 dBm. (3) OFF / UNLIT indicates optical signal power is within normal operating range (-18 to -25 dBm). If LOS is Red, customer self-service restart will not restore link; a physical fiber technician dispatch is required.",
+    "applies_to": ["FIBER-499", "FIBER-799", "FIBER-999", "FIBER-1499"],
+    "required_fields": ["router_status"],
+    "keywords": ["los light", "los red", "blinking red", "red light on router", "optical cable", "fiber patch cord", "indicator", "internet stopped working", "nothing loads", "internet not working", "no connection"]
+  },
+  {
+    "id": "KB-ROUT-02",
+    "category": "HARDWARE",
+    "title": "PON Indicator Diagnostics and Optical Link Authorization",
+    "body": "The PON (Passive Optical Network) LED reflects registration with the central OLT: (1) Solid GREEN: ONT is successfully authenticated and receiving downstream light. (2) Blinking GREEN: ONT is synchronizing and provisioning OMCI parameters. (3) OFF: No optical carrier signal detected. If PON is off while LOS is also off, verify power adapter output (12V 1.5A).",
+    "applies_to": ["FIBER-499", "FIBER-799", "FIBER-999", "FIBER-1499"],
+    "required_fields": ["router_status"],
+    "keywords": ["pon light", "pon blinking", "pon green", "olt registration", "optical sync"]
+  },
+  {
+    "id": "KB-ROUT-03",
+    "category": "HARDWARE",
+    "title": "Router Power Cycle and Hard Reset Guidelines",
+    "body": "To safely clear volatile memory leaks and renew DHCP leases, perform a clean power cycle: Switch OFF the 12V power adapter at the wall outlet, wait for 30 full seconds to allow all internal capacitors to discharge, and switch ON. CRITICAL WARNING: Customers must NOT press the pinhole 'RESET' button on the rear panel unless instructed by tier-2 engineering, as a hard reset erases GPON Serial authentication and VLAN 100 configuration.",
+    "applies_to": ["FIBER-499", "FIBER-799", "FIBER-999", "FIBER-1499"],
+    "required_fields": ["router_status", "router_model"],
+    "keywords": ["power cycle", "restart router", "reboot", "pinhole reset", "turn off and on", "30 seconds"]
+  },
+  {
+    "id": "KB-ROUT-04",
+    "category": "HARDWARE",
+    "title": "Dual-Band Wi-Fi 2.4GHz vs 5GHz Configuration and Interference",
+    "body": "All gigabit ONTs feature simultaneous dual-band Wi-Fi: 2.4GHz (extended range, maximum ~50-70 Mbps real-world throughput, prone to microwave/Bluetooth interference) and 5GHz (high speed up to 500+ Mbps, lower wall penetration). For high-speed speedtests matching the plan speed, the device must connect to the '_5G' SSID within direct line-of-sight of 5-8 meters.",
+    "applies_to": ["FIBER-799", "FIBER-999", "FIBER-1499"],
+    "required_fields": ["plan_name"],
+    "keywords": ["5ghz", "2.4ghz", "slow wifi", "speed test wifi", "dual band", "ssid"]
+  },
+  {
+    "id": "KB-ROUT-05",
+    "category": "HARDWARE",
+    "title": "Router Hardware Replacement and Lightning Surge Policy",
+    "body": "ONT devices damaged due to electrical grid surges or lightning strikes are replaced free of charge within the active subscription tenure, provided physical housing is unburned and serial number sticker is intact. Water damage or customer-opened casing voids warranty and incurs a ₹1,500 replacement fee.",
+    "applies_to": ["FIBER-499", "FIBER-799", "FIBER-999", "FIBER-1499"],
+    "required_fields": ["tenure_months", "router_model"],
+    "keywords": ["broken router", "burned router", "lightning damage", "replace modem", "warranty"]
+  },
+  {
+    "id": "KB-PLAN-01",
+    "category": "PLANS",
+    "title": "Speed Tier Upgrade Activation and Provisioning",
+    "body": "Upgrading to a higher bandwidth tier (e.g. from Fiber 799 to Fiber 999/1499) takes effect instantaneously without requiring hardware replacement. The new speed profile is pushed to the OLT within 10 minutes, and the billing difference for the remaining days of the current month is charged on the subsequent monthly bill.",
+    "applies_to": ["FIBER-499", "FIBER-799", "FIBER-999"],
+    "required_fields": ["plan_id", "billing_status"],
+    "keywords": ["upgrade plan", "increase speed", "switch to 200mbps", "switch to 300mbps", "upgrade immediate"]
+  },
+  {
+    "id": "KB-PLAN-02",
+    "category": "PLANS",
+    "title": "Plan Downgrade and Billing Cycle Transition",
+    "body": "Downgrade requests (e.g. from Fiber 999 to Fiber 499) can be scheduled at any time, but to prevent double taxation and proration disputes, the downgrade only becomes effective on the 1st day of the following calendar month. High-tier benefits (such as bundled OTT subscriptions) remain active until the end of the current billing cycle.",
+    "applies_to": ["FIBER-799", "FIBER-999", "FIBER-1499"],
+    "required_fields": ["plan_id", "plan_name"],
+    "keywords": ["downgrade plan", "reduce speed", "cheaper plan", "lower bill", "downgrade next month"]
+  },
+  {
+    "id": "KB-PLAN-03",
+    "category": "PLANS",
+    "title": "OTT Subscription Bundles Activation and Login",
+    "body": "Fiber Pro (FIBER-999) includes Disney+ Hotstar Super and SonyLIV. Fiber Ultra (FIBER-1499) adds Netflix Basic and Amazon Prime. Subscriptions are bound to the customer's registered mobile number (RMN). Customers must log in to the OTT apps using their RMN OTP. Fiber Starter (499) and Fiber Basic (799) do NOT include OTT apps.",
+    "applies_to": ["FIBER-999", "FIBER-1499"],
+    "required_fields": ["plan_id", "phone"],
+    "keywords": ["ott", "netflix", "hotstar", "prime video", "streaming bundle", "activate hotstar"]
+  },
+  {
+    "id": "KB-PLAN-04",
+    "category": "PLANS",
+    "title": "Temporary Service Suspension (Safe Custody Mode)",
+    "body": "Subscribers traveling or temporarily relocating may place broadband in 'Safe Custody' mode for a minimum of 30 days and maximum of 90 days per calendar year. While suspended, regular monthly rental is paused and replaced by a nominal maintenance charge of ₹150/month. Optical port allocation and IP assignment are preserved.",
+    "applies_to": ["FIBER-499", "FIBER-799", "FIBER-999", "FIBER-1499"],
+    "required_fields": ["billing_status", "tenure_months"],
+    "keywords": ["vacation pause", "safe custody", "temporary hold", "pause connection", "freeze account"]
+  },
+  {
+    "id": "KB-REF-01",
+    "category": "REFUNDS",
+    "title": "Outage Exceeding 24 Hours Pro-Rata Credit Formula",
+    "body": "In compliance with consumer telecommunication quality-of-service standards, if an unplanned network disruption lasts longer than 24 consecutive hours from ticket logging time, the subscriber is entitled to a pro-rata billing credit. Formula: (Monthly Rental / 30) * Outage Days. The credit is automatically credited to the customer's account balance and reflected on the following monthly statement.",
+    "applies_to": ["FIBER-499", "FIBER-799", "FIBER-999", "FIBER-1499"],
+    "required_fields": ["monthly_rental", "recent_tickets"],
+    "keywords": ["outage compensation", "credit for down time", "pro-rata credit", "outage longer than 24 hours", "refund for outage"]
+  },
+  {
+    "id": "KB-REF-02",
+    "category": "REFUNDS",
+    "title": "Unauthorized Service Activation Dispute Resolution",
+    "body": "If a subscriber identifies charges on their invoice for value-added services, mesh hardware rental, or speed boosters they did not authorize, they must dispute within 30 days of invoice date. Upon review of the digital acceptance audit log, any unauthenticated charge is reversed in full within 48 business hours.",
+    "applies_to": ["FIBER-499", "FIBER-799", "FIBER-999", "FIBER-1499"],
+    "required_fields": ["billing_status", "current_balance"],
+    "keywords": ["unauthorized charge", "fraudulent add-on", "dispute charge", "wrong billing", "overcharged"]
+  },
+  {
+    "id": "KB-REF-03",
+    "category": "REFUNDS",
+    "title": "Bank Chargeback and Payment Gateway Disputes",
+    "body": "When a customer initiates an external chargeback through their credit card issuer or bank without contacting customer support first, the subscriber account is automatically flagged for financial lock. Customer support agents cannot process direct cash refunds while an active banking dispute is under merchant review.",
+    "applies_to": ["FIBER-499", "FIBER-799", "FIBER-999", "FIBER-1499"],
+    "required_fields": ["billing_status"],
+    "keywords": ["chargeback", "bank dispute", "credit card reversal", "disputed with bank"]
+  },
+  {
+    "id": "KB-REF-04",
+    "category": "REFUNDS",
+    "title": "Relocation Feasibility Failure and Security Refund",
+    "body": "When an existing subscriber shifts residence to a building or locality where Clarivo fiber infrastructure is technically unfeasible (no fiber DP within 150m), the contract is terminated without penalty. The full security deposit of ₹1,000 plus any prepaid unused rental days is refunded via NEFT within 7 business days.",
+    "applies_to": ["FIBER-499", "FIBER-799", "FIBER-999", "FIBER-1499"],
+    "required_fields": ["tenure_months", "current_balance"],
+    "keywords": ["shifting home", "relocation", "no fiber in new area", "cancel due to moving", "unfeasible shift"]
+  }
+]
