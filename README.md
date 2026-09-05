@@ -1,4 +1,5 @@
-TRACK_ID=PS04
+TRACK_ID=PS04<br>
+VALIDATION_KEY=PS04
 # Clarivo — Intelligent Support Resolution System
 
 > **PS04 Challenge Solution**: Evidence-Grounded Customer Resolution Copilot for broadband, fiber, and telecom customer support operations.
